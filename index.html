@@ -1,0 +1,160 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <form action="">
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-6 row-heading">
+          Item
+        </div>
+        <div class="col-3 row-heading">
+          Quantity
+        </div>
+        <div class="col-2 row-heading">
+          Price
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-3">
+          <input type="number" class="form-control" value="0" class="qty" id="qty_one"/>
+        </div>
+        <div class="col-2">
+          <input type="number" class="form-control"  value="0" id="price_one"/>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-6">
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-3">
+          <input type="number" class="form-control" value="0" class="qty" id="qty_two"/>
+        </div>
+        <div class="col-2">
+          <input type="number" class="form-control"  value="0" id="price_two"/>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-6">
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-3">
+          <input type="number" class="form-control" class="qty" value="0" id="qty_three"/>
+        </div>
+        <div class="col-2">
+          <input type="number" class="form-control"  value="0" id="price_three"/>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-6">
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-3">
+          <input type="number" class="form-control" class="qty" value="0" id="qty_four"/>
+        </div>
+        <div class="col-2">
+          <input type="number" class="form-control"  value="0" id="price_four"/>
+        </div>
+      </div>
+
+
+      <div class="row my-3">
+        <div class="col-6">
+          <input type="text" class="form-control">
+        </div>
+        <div class="col-3">
+          <input type="number" class="form-control" class="qty" value="0" id="qty_five"/>
+        </div>
+        <div class="col-2">
+          <input type="number" class="form-control"  value="0" id="price_five"/>
+        </div>
+      </div>
+
+      <div class="row my-4">
+        <div class="col-9 text-right total">
+          Total
+        </div>
+
+        <div class="col-2 total-val">
+          <span id="total_value">0</span>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <button type="button" class="col btn btn-success ml-2" id="calculate">Calculate</button>
+        </div>
+        <div>
+          <button type="reset" class="col btn btn-success ml-5" id="clear" onclick="clearData()">Clear</button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</body>
+<script>
+  function calculateTotal()
+{
+  let price_one=$("#price_one").val();
+  let price_two=$("#price_two").val();
+  let price_three=$("#price_three").val();
+  let price_four=$("#price_four").val();
+  let price_five=$("#price_five").val();
+
+  let unit_price={
+    price_one,
+    price_two,
+    price_three,
+    price_four,
+    price_five
+  };
+  let item_price={}
+  
+  item_price.one = ($("#qty_one").val() * unit_price.price_one )
+  $("#price_one").val(item_price.one);
+  
+  item_price.two = ($("#qty_two").val() * unit_price.price_two )
+  $("#price_two").val(item_price.two);
+  
+  item_price.three = ($("#qty_three").val() * unit_price.price_three )
+  $("#price_three").val(item_price.price_three);  
+  
+  item_price.four = ($("#qty_four").val() * unit_price.price_four )
+  $("#price_four").val(item_price.price_four);    
+
+  item_price.five = ($("#qty_five").val() * unit_price.price_five )
+  $("#price_five").val(item_price.price_five);  
+  
+  let total = item_price.one + item_price.two + item_price.three + item_price.four+ item_price.five ;
+
+ 
+  $("#total_value").text(total);
+  
+}
+function clearData()
+{
+  $("#total_value").text('0');
+}
+
+$(function()
+ {
+    $("#calculate").on("click",calculateTotal)
+})
+</script>
+
+</html>
